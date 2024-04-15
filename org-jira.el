@@ -187,7 +187,7 @@ where both are strings.  NEW-FILE-NAME is relative to
   :type '(repeat (string :tag "Jira state name:")))
 
 (defcustom org-jira-users
-  '(("Full Name" . "account-id"))
+  '(("Unassigned" . nil))
   "A list of displayName and key pairs."
   :group 'org-jira
   :type 'list)
@@ -1812,7 +1812,7 @@ that should be bound to an issue."
              (description . ,description)
              (priority (id . ,priority))
              ;; accountId should be nil if Unassigned, not the key slot.
-             (assignee (accountId . ,(or (cdr (assoc user jira-users)) nil)))))))
+             (assignee (name . ,(or (cdr (assoc user jira-users)) nil)))))))
     ticket-struct))
 
 ;;;###autoload
